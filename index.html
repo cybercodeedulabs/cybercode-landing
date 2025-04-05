@@ -1,47 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cybercode EduLabs | Training Registration</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
+      background-color: #f5f5f5;
       color: #333;
     }
     header {
       background-color: #008080;
       color: white;
-      padding: 30px 20px;
-      text-align: center;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    header img {
+      height: 60px;
+      margin-right: 20px;
     }
     .hero {
       text-align: center;
+      padding: 40px 20px;
+      background-color: #ffffff;
+    }
+    .hero img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .intro, .why-choose, .internships, .courses, .note {
       padding: 30px;
       background-color: #ffffff;
-    }
-    .hero h2 {
-      color: #008080;
-    }
-    .courses {
-      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
     .courses ul {
-      list-style-type: none;
-      padding-left: 0;
       columns: 2;
       column-gap: 40px;
+      list-style-type: none;
+      padding: 0;
     }
     .courses li {
-      padding: 5px 0;
+      padding: 8px 0;
     }
     .form-section {
-      padding: 40px;
       text-align: center;
-      background-color: #ffffff;
+      padding: 40px;
+      background-color: #eefdfd;
     }
     .register-button {
       background-color: #008080;
@@ -51,7 +65,6 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
       text-decoration: none;
       display: inline-block;
     }
@@ -62,19 +75,60 @@
       text-align: center;
       background-color: #008080;
       color: white;
-      padding: 15px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    h3 {
+      color: #008080;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Cybercode EduLabs</h1>
+    <div style="display: flex; align-items: center;">
+      <img src="images/logo.png" alt="Cybercode EduLabs Logo" />
+      <h1>Cybercode EduLabs</h1>
+    </div>
     <p>Your gateway to professional tech training</p>
   </header>
 
   <div class="hero">
     <h2>Unlock Your Potential with Expert-Led Training</h2>
     <p>Enroll in our industry-recognized courses and build your tech career</p>
+    <img src="https://source.unsplash.com/1600x600/?technology,training" alt="Training Image" />
+  </div>
+
+  <div class="intro">
+    <p>At Cybercode EduLabs, our training is designed and delivered by experienced IT professionals with real-world project exposure and deep industry knowledge. Whether you're a beginner or a working professional, our practical sessions and personalized guidance will help you gain hands-on expertise that recruiters look for.</p>
+  </div>
+
+  <div class="why-choose">
+    <h3>Why Choose Us?</h3>
+    <ul>
+      <li>Live online classes with real-world projects</li>
+      <li>Experienced IT professionals as instructors</li>
+      <li>Career-oriented course design</li>
+      <li>Dedicated support and doubt-clearing sessions</li>
+      <li>Access to learning materials and recorded sessions</li>
+    </ul>
+  </div>
+
+  <div class="internships">
+    <h3>Internships & Career Support</h3>
+    <p>We not only train you but also offer internship opportunities, issue experience certificates, and guide you through job placements.</p>
+    <p>Our career assistance includes:</p>
+    <ul>
+      <li>Internships with real project experience</li>
+      <li>Experience certificate upon completion</li>
+      <li>Resume building and profile optimization</li>
+      <li>Mock interviews with expert feedback</li>
+      <li>Placement support & job referrals</li>
+    </ul>
   </div>
 
   <div class="courses">
@@ -101,6 +155,10 @@
     </ul>
   </div>
 
+  <div class="note">
+    <p><strong>Note:</strong> To get detailed information about course fees and schedules, please register your interest. Our team will personally reach out and assist you with all the information you need.</p>
+  </div>
+
   <div class="form-section">
     <h3>Register Now:</h3>
     <a class="register-button" href="https://forms.gle/fWWhSeYP5qbmttyP8" target="_blank" rel="noopener noreferrer">
@@ -109,7 +167,7 @@
   </div>
 
   <footer>
-    <p>Contact us on WhatsApp: <a href="https://wa.me/919014066549" style="color: #fff; text-decoration: underline;">+91 90140 66549</a></p>
+    <p>Contact us on WhatsApp: <a href="https://wa.me/919014066549">+91 90140 66549</a></p>
     <p>© 2025 Cybercode EduLabs. All rights reserved.</p>
   </footer>
 </body>
