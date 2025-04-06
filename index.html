@@ -131,6 +131,35 @@
     h3 {
       color: #008080;
     }
+    .main-nav {
+      background-color: #006666;
+      padding: 10px 0;
+      text-align: center;
+    }
+    .main-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .main-nav li {
+      display: inline;
+    }
+    .main-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    .main-nav a:hover {
+      background-color: #004d4d;
+    }
+
     
   </style>
   <link rel="icon" type="image/png" href="favicon.png">
@@ -144,6 +173,17 @@
     </div>
     <p>Your gateway to professional tech training</p>
   </header>
+
+  <nav class="main-nav">
+    <ul>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="https://forms.gle/fWWhSeYP5qbmttyP8" target="_blank">Register</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#blog">Blog</a></li>
+    </ul>
+  </nav>
+  
 
   <div class="hero">
     <div class="register-top-right">
