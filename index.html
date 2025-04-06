@@ -260,6 +260,77 @@
     </div>
   </section>
   
+  <!-- Project Portfolio Slider Section -->
+<div class="project-slider-section" style="background-color: #f8f8f8; padding: 50px 20px;">
+  <div class="container">
+    <h2 style="color: #008080; text-align: center;">Project Portfolio Showcase</h2>
+    <p style="text-align: center; margin-bottom: 40px;">
+      Explore a few of the real-time projects we've delivered or currently working on.
+    </p>
+
+    <div class="slider-container" style="position: relative; max-width: 1000px; margin: auto; overflow: hidden;">
+      <div class="slider-wrapper" style="display: flex; transition: transform 0.5s ease;">
+        
+        <!-- Slide 1 -->
+        <div class="slide" style="min-width: 100%; box-sizing: border-box; padding: 20px;">
+          <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <h3 style="color: #008080;">Cloud Infrastructure Setup</h3>
+            <p><strong>Tech Stack:</strong> AWS, Terraform, Jenkins</p>
+            <p>Provisioned and automated a scalable multi-tier cloud infrastructure using Infrastructure as Code (IaC).</p>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" style="min-width: 100%; box-sizing: border-box; padding: 20px;">
+          <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <h3 style="color: #008080;">E-Commerce Analytics Dashboard</h3>
+            <p><strong>Tech Stack:</strong> Python, MySQL, Plotly</p>
+            <p>Built a visual dashboard for real-time sales analysis and inventory forecasting for an e-commerce platform.</p>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" style="min-width: 100%; box-sizing: border-box; padding: 20px;">
+          <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <h3 style="color: #008080;">Secure File Sharing System</h3>
+            <p><strong>Tech Stack:</strong> Golang, AWS S3, JWT</p>
+            <p>Developed a secure file upload & sharing solution with role-based access and encryption at rest.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation buttons -->
+      <button onclick="prevSlide()" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: #008080; color: white; border: none; padding: 10px 15px; border-radius: 5px;">←</button>
+      <button onclick="nextSlide()" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: #008080; color: white; border: none; padding: 10px 15px; border-radius: 5px;">→</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const sliderWrapper = document.querySelector('.slider-wrapper');
+  const totalSlides = document.querySelectorAll('.slide').length;
+
+  function showSlide(index) {
+    const slideWidth = document.querySelector('.slide').offsetWidth;
+    sliderWrapper.style.transform = `translateX(-${index * slideWidth}px)`;
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  // Optional: Auto-slide every 5 seconds
+  setInterval(nextSlide, 5000);
+</script>
+
 
   <div class="note">
     <p><strong>Note:</strong> To get detailed information about course fees and schedules, please register your interest. Our team will personally reach out and assist you with all the information you need.</p>
