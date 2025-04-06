@@ -3,30 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Private Cloud with OpenStack | Cybercode EduLabs</title>
-  <link rel="icon" type="image/png" href="../favicon.png" />
+  <title>Private Cloud with OpenStack - Cybercode EduLabs</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
+      background-color: #f8f8f8;
       color: #333;
+      line-height: 1.6;
     }
-    header {
+    header, footer {
       background-color: #008080;
       color: white;
+      text-align: center;
       padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
     }
-    header img {
-      height: 60px;
-      margin-right: 20px;
-    }
-	header h1 {
+    header h1 {
       margin: 0;
       font-size: 2rem;
       color: #fff;
@@ -36,101 +29,107 @@
       margin: 5px 0 0;
       font-size: 1.1rem;
     }
-    h1, h2 {
-      margin: 0;
-    }
-    .course-container {
+    .container {
       padding: 30px;
       max-width: 1000px;
       margin: auto;
+      background-color: white;
     }
-    .course-section {
-      background-color: #ffffff;
-      padding: 25px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    .course-section h3 {
+    h1, h2 {
       color: #008080;
     }
-    .register-button {
+    ul {
+      padding-left: 20px;
+    }
+    .video-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .cta-button {
       background-color: #008080;
       color: white;
-      padding: 12px 25px;
+      padding: 15px 25px;
       font-size: 16px;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
       text-decoration: none;
       display: inline-block;
-      margin-top: 15px;
-    }
-    .register-button:hover {
-      background-color: #006666;
-    }
-    footer {
-      text-align: center;
-      background-color: #008080;
-      color: white;
-      padding: 20px;
       margin-top: 20px;
     }
-    footer a {
-      color: #fff;
-      text-decoration: underline;
+    .back-link {
+      display: block;
+      margin-top: 30px;
+      text-align: center;
     }
   </style>
+  <link rel="icon" type="image/png" href="../favicon.png">
 </head>
 <body>
 
   <header>
-    <div style="display: flex; align-items: center;">
-      <img src="../images/logo.png" alt="Cybercode EduLabs Logo" />
-      <h1>Cybercode EduLabs</h1>
-    </div>
-    <p>Your gateway to professional tech training</p>
+    <h1>Cybercode EduLabs</h1>
+    <p>Professional IT Training Institute</p>
   </header>
 
-  <div class="course-container">
-    <div class="course-section">
-      <h2>Private Cloud with OpenStack</h2>
-      <p>Master the concepts of cloud computing infrastructure by building and managing your own private cloud using OpenStack. Ideal for sysadmins, cloud enthusiasts, and DevOps engineers looking to skill up in private cloud technologies.</p>
+  <div class="container">
+    <h2>Private Cloud with OpenStack</h2>
+
+    <p><strong>Course Overview:</strong> Learn to build and manage your own cloud infrastructure using OpenStack, a powerful open-source platform. This course takes you through real-world cloud deployment scenarios to prepare you for the growing demand in private cloud and hybrid cloud environments.</p>
+
+    <h3>Who Should Take This Course?</h3>
+    <ul>
+      <li>System Administrators & IT Professionals</li>
+      <li>Cloud Engineers & DevOps Enthusiasts</li>
+      <li>Engineering Students looking to enter cloud domains</li>
+      <li>Anyone passionate about building their own private cloud setup</li>
+    </ul>
+
+    <h3>Course Benefits</h3>
+    <ul>
+      <li>Understand OpenStack architecture and core components</li>
+      <li>Install and configure services like Nova, Neutron, Glance, Keystone</li>
+      <li>Create and manage instances, volumes, and networking</li>
+      <li>Hands-on setup using virtualized or bare-metal labs</li>
+      <li>Industry-level examples of hybrid cloud and security</li>
+    </ul>
+
+    <h3>Topics Covered</h3>
+    <ul>
+      <li>Cloud Computing and IaaS Overview</li>
+      <li>OpenStack Architecture Deep Dive</li>
+      <li>Installation of OpenStack via DevStack and Packstack</li>
+      <li>Compute, Storage, and Networking Services</li>
+      <li>OpenStack Horizon Dashboard</li>
+      <li>Tenant Management and Access Control</li>
+      <li>Monitoring and Troubleshooting OpenStack</li>
+    </ul>
+
+    <h3>Tools and Platforms You'll Learn</h3>
+    <ul>
+      <li>OpenStack CLI and Horizon</li>
+      <li>Linux (Ubuntu/CentOS based deployments)</li>
+      <li>KVM / VirtualBox for lab environments</li>
+      <li>DevStack, Packstack, and manual setups</li>
+    </ul>
+
+    <h3>Real-World Applications</h3>
+    <p>Private cloud skills are in high demand by enterprises building secure, customizable cloud infrastructures. OpenStack is widely used in telcos, research organizations, and enterprise cloud platforms.</p>
+
+    <div class="video-container">
+      <h3>Watch Demo Class</h3>
+      <!-- Replace with your actual OpenStack demo video URL -->
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/LON4U6SMn80" title="OpenStack Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <div class="course-section">
-      <h3>Course Highlights:</h3>
-      <ul>
-        <li>Understanding IaaS and OpenStack architecture</li>
-        <li>Installing and configuring OpenStack components (Nova, Neutron, Keystone, etc.)</li>
-        <li>Networking and Storage setup in OpenStack</li>
-        <li>Launching instances and managing tenants</li>
-        <li>Creating your own cloud lab for practice</li>
-        <li>Security, logging, and troubleshooting OpenStack services</li>
-      </ul>
-    </div>
+    <a href="https://forms.gle/fWWhSeYP5qbmttyP8" class="cta-button" target="_blank">Register Now</a>
 
-    <div class="course-section">
-      <h3>Who Should Join?</h3>
-      <ul>
-        <li>System Administrators & IT Professionals</li>
-        <li>Cloud Engineers & DevOps Enthusiasts</li>
-        <li>Engineering Students looking for infrastructure knowledge</li>
-        <li>Anyone aiming to build and operate private cloud infrastructure</li>
-      </ul>
-    </div>
-
-    <div class="course-section">
-      <h3>Registration:</h3>
-      <p>To know the course schedule and fee details, register your interest using the link below.</p>
-      <a class="register-button" href="https://forms.gle/fWWhSeYP5qbmttyP8" target="_blank" rel="noopener noreferrer">
-        Register Now
-      </a>
+    <div class="back-link">
+      <a href="../index.html">← Back to Home</a>
     </div>
   </div>
 
   <footer>
-    <p>Contact us on WhatsApp: <a href="https://wa.me/919014066549">+91 90140 66549</a></p>
+    <p>WhatsApp: <a href="https://wa.me/919014066549" style="color: #fff; text-decoration: underline;">+91 90140 66549</a></p>
     <p>© 2025 Cybercode EduLabs. All rights reserved.</p>
   </footer>
 
