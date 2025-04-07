@@ -187,6 +187,46 @@
       margin-top: 15px;
       color: #007BFF;
     }
+    .faq-section {
+      padding: 60px 20px;
+      background-color: #fff;
+      text-align: center;
+    }
+    .faq-section h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    .faq-container {
+      max-width: 800px;
+      margin: auto;
+      text-align: left;
+    }
+    .faq-item {
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      padding: 15px;
+      background-color: #f1f1f1;
+      border: none;
+      text-align: left;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .faq-question:hover {
+      background-color: #e0e0e0;
+    }
+    .faq-answer {
+      display: none;
+      padding: 15px;
+      background-color: #fafafa;
+    }
+
     
   </style>
   <link rel="icon" type="image/png" href="favicon.png">
@@ -432,11 +472,54 @@
       </div>
     </div>
   </section>
+
+
+  <section id="faq" class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-question">What is the mode of training?</button>
+        <div class="faq-answer">
+          <p>All courses are conducted online with live interactive sessions.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Will I get recordings of classes?</button>
+        <div class="faq-answer">
+          <p>Yes, recordings of every session will be shared for revision and backup.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Are there any prerequisites?</button>
+        <div class="faq-answer">
+          <p>Basic computer knowledge is enough for beginner courses. For advanced courses, basic programming/cloud concepts are helpful.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How can I register?</button>
+        <div class="faq-answer">
+          <p>You can register using the form available on our homepage, or reach out to us via WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
   
 
   <footer>
     <p>Contact us on WhatsApp: <a href="https://wa.me/919014066549">+91 90140 66549</a></p>
     <p>© 2025 Cybercode EduLabs. All rights reserved.</p>
   </footer>
+
+  <script>
+    const questions = document.querySelectorAll('.faq-question');
+    questions.forEach((question) => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+  </script>
+  
 </body>
 </html>
