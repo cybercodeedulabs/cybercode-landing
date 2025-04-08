@@ -117,6 +117,25 @@
         font-weight: bold;">
         Register
       </a>
+      <a href="dashboard.html" id="dashboardButton" style="
+        padding: 10px 20px; 
+        background-color: #006666; 
+        color: white; 
+        text-decoration: none; 
+        border-radius: 5px; 
+        font-weight: bold; 
+        display: none;">
+      Dashboard
+      </a>
+	  <a href="#" id="logout" style="
+        padding: 10px 20px; 
+        background-color: red; 
+        color: white; 
+        text-decoration: none; 
+        border-radius: 5px; 
+        font-weight: bold;">
+      Logout
+      </a>
     </div>
   </header>
 
@@ -159,20 +178,39 @@
     <p>&copy; 2025 Cybercode EduLabs. All Rights Reserved.</p>
   </footer>
 
-  <script>
-const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-if (!currentUser) {
-  alert('You must log in first.');
-  window.location.href = 'login.html';
-} else {
-  document.querySelector('.welcome h2').textContent = `Hello, ${currentUser.name}!`;
-}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-    document.getElementById('logout').addEventListener('click', function () {
-      localStorage.removeItem('currentUser');
-      alert('Logged out successfully.');
+    const loginButton = document.getElementById('loginButton');
+    const registerButton = document.getElementById('registerButton');
+    const dashboardButton = document.getElementById('dashboardButton');
+
+    // If user is logged in, hide Login/Register and show Dashboard
+    if (currentUser && currentUser.name) {
+      loginButton.style.display = 'none';
+      registerButton.style.display = 'none';
+      dashboardButton.style.display = 'inline-block';
+
+      // Update the greeting
+      document.querySelector('.welcome h2').textContent = `Hello, ${currentUser.name}!`;
+    } else {
+      // Redirect to login page if the user is not logged in
+      alert('You must log in first.');
       window.location.href = 'login.html';
+    }
+
+    // Logout functionality
+    document.getElementById('logout').addEventListener('click', function () {
+      const confirmLogout = confirm('Are you sure you want to log out?');
+      if (confirmLogout) {
+        localStorage.removeItem('currentUser');
+        alert('Logged out successfully.');
+        window.location.href = 'login.html';
+      }
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>

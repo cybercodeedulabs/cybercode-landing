@@ -527,22 +527,31 @@
   </script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const studentLoginButton = document.getElementById('studentLogin');
+document.addEventListener('DOMContentLoaded', function () {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const loginButton = document.querySelector('a[href="login.html"]');
+  const registerButton = document.querySelector('a[href="register.html"]');
+  const headerContainer = document.querySelector('header div:last-child');
 
-    studentLoginButton.addEventListener('click', function (e) {
-      e.preventDefault(); // Prevent default anchor behavior
+  if (currentUser) {
+    loginButton.style.display = 'none';
+    registerButton.style.display = 'none';
 
-      if (currentUser) {
-        alert('Welcome back! Redirecting to your dashboard.');
-        window.location.href = 'dashboard.html'; // Redirect to the dashboard
-      } else {
-        alert('You are not logged in. Redirecting to the login page.');
-        window.location.href = 'login.html'; // Redirect to login page
-      }
-    });
-  });
+    const dashboardLink = document.createElement('a');
+    dashboardLink.href = 'dashboard.html';
+    dashboardLink.textContent = 'Go to Dashboard';
+    dashboardLink.style = `
+      padding: 10px 20px;
+      background-color: #008080;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    `;
+    headerContainer.appendChild(dashboardLink);
+  }
+});
+
 </script>
 
   

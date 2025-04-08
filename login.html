@@ -83,6 +83,31 @@ document.getElementById('logout').addEventListener('click', function () {
   alert('Logged out successfully.');
   window.location.href = 'login.html';
   });
+  document.querySelector('form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const email = document.querySelector('#email').value;
+  const password = document.querySelector('#password').value;
+
+  // Mock user validation
+  const registeredUser = JSON.parse(localStorage.getItem('registeredUser'));
+  if (registeredUser && registeredUser.email === email && registeredUser.password === password) {
+    const currentUser = { name: registeredUser.name, email: registeredUser.email };
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    alert('Login successful!');
+    window.location.href = 'dashboard.html';
+  } else {
+    alert('Invalid email or password.');
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  if (currentUser) {
+    alert('You are already logged in. Redirecting to the dashboard.');
+    window.location.href = 'dashboard.html';
+  }
+});
+
 </script>
 
     <p>&copy; 2025 Cybercode EduLabs</p>
