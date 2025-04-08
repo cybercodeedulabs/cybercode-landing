@@ -1,191 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta name="description" content="Cybercode EduLabs offers training in AWS, CCNA, DevOps, and more.">
-  <meta name="keywords" content="Cybercode, EduLabs, training, AWS, CCNA, cloud, cybersecurity">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Dashboard | Cybercode EduLabs</title>
-  
-  <link rel="icon" type="image/png" href="favicon.png">
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-      color: #333;
-    }
-    header {
-      background-color: #008080;
-      color: white;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    header img {
-      height: 60px;
-      margin-right: 20px;
-    }
-    header h1 {
-      margin: 0;
-    }
-    .dashboard {
-      padding: 20px;
-    }
-    .welcome {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .welcome h2 {
-      color: #008080;
-      visibility: hidden;
-    }
-    .courses-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .course-card {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-    .course-card:hover {
-      transform: translateY(-5px);
-    }
-    .course-card h3 {
-      color: #333;
-    }
-    .course-card a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #008080;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-    .course-card a:hover {
-      background-color: #006666;
-    }
-    footer {
-      text-align: center;
-      background-color: #008080;
-      color: white;
-      padding: 20px;
-      margin-top: 20px;
-    }
-    #logout {
-      padding: 10px 20px; 
-      background-color: red; 
-      color: white; 
-      text-decoration: none; 
-      border-radius: 5px; 
-      font-weight: bold;
-      display: inline-block;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Cybercode EduLabs</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+            color: #000;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        h1 {
+            font-size: 28px;
+            color: #0056b3;
+        }
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .courses {
+            margin-top: 20px;
+        }
+        .course-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .course-list li {
+            background: #007bff;
+            color: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 6px;
+        }
+        .footer {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+		/* CSS for course display */
+.course {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.course h3 {
+  font-size: 1.2em;
+}
+.course button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+    </style>
 </head>
 <body>
-  <header>
-    <div style="display: flex; align-items: center;">
-      <img src="images/logo.png" alt="Cybercode EduLabs Logo" onerror="this.src='images/logo.png';" />
-      <h1>Cybercode EduLabs</h1>
-    </div>
-    <div style="display: flex; align-items: center; gap: 20px;">
-      <p>Welcome to Your Learning Dashboard</p>
-      <a href="login.html" style="
-        padding: 10px 20px; 
-        background-color: #fff; 
-        color: #008080; 
-        text-decoration: none; 
-        border-radius: 5px; 
-        font-weight: bold; 
-        border: 2px solid #008080;">
-        Login
-      </a>
-      <a href="register.html" style="
-        padding: 10px 20px; 
-        background-color: #008080; 
-        color: white; 
-        text-decoration: none; 
-        border-radius: 5px; 
-        font-weight: bold;">
-        Register
-      </a>
-    </div>
-  </header>
-
-  <div class="dashboard">
-    <div class="welcome">
-      <h2>Hello, [Student Name]!</h2>
-      <p>Here are your enrolled courses. Click on a course to access its materials and track your progress.</p>
-      <a href="#" id="logout">Logout</a>
+    <div class="container">
+        <div class="header">
+            <img src="images/logo.png" alt="Cybercode EduLabs Logo">
+            <h1>Student Dashboard</h1>
+        </div>
+        <p>Welcome, <span id="username">Student</span>!</p>
+        <div class="courses">
+            <h2>Your Courses</h2>
+            <ul class="course-list" id="courseList">
+                <!-- Courses will be dynamically populated here -->
+            </ul>
+            <p id="noCoursesMessage">You are not registered for any courses yet.</p>
+            <button onclick="registerForCourses()">Register for Courses</button>
+        </div>
+        <div class="footer">
+            <p><a href="logout.html">Logout</a></p>
+        </div>
     </div>
 
-    <div class="courses-list">
-      <div class="course-card">
-        <h3>Golang</h3>
-        <a href="courses/golang.html" aria-label="Access Golang Course">Go to Course</a>
-      </div>
-      <div class="course-card">
-        <h3>AWS Certified Training</h3>
-        <a href="courses/aws.html" aria-label="Access AWS Certified Training Course">Go to Course</a>
-      </div>
-      <div class="course-card">
-        <h3>DevOps (Docker & Kubernetes)</h3>
-        <a href="courses/devops.html" aria-label="Access DevOps Course">Go to Course</a>
-      </div>
-      <div class="course-card">
-        <h3>Python Programming (Job-Focused)</h3>
-        <a href="courses/python.html" aria-label="Access Python Programming Course">Go to Course</a>
-      </div>
-      <div class="course-card">
-        <h3>Machine Learning with AWS</h3>
-        <a href="courses/ml-aws.html" aria-label="Access Machine Learning with AWS Course">Go to Course</a>
-      </div>
-      <div class="course-card">
-        <h3>Cloud Security & DevSecOps</h3>
-        <a href="courses/cloud-security.html" aria-label="Access Cloud Security Course">Go to Course</a>
-      </div>
-    </div>
-  </div>
+    <script>
+        // Fetch username from local storage
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const usernameDisplay = document.getElementById('username');
+        const courseList = document.getElementById('courseList');
+        const noCoursesMessage = document.getElementById('noCoursesMessage');
+		// Retrieve registered courses from localStorage
+const userCourses = JSON.parse(localStorage.getItem('userCourses'));
 
-  <footer>
-    <p>&copy; 2025 Cybercode EduLabs. All Rights Reserved.</p>
-  </footer>
 
-  <script>
-    let currentUser;
-    try {
-      const storedUser = localStorage.getItem('currentUser');
-      currentUser = storedUser ? JSON.parse(storedUser) : null;
-      if (!currentUser || !currentUser.name) throw new Error();
-    } catch (error) {
-      alert('You must log in first.');
-      window.location.href = 'login.html';
-    }
+        if (currentUser) {
+            usernameDisplay.textContent = currentUser.username;
 
-    const welcomeMessage = document.querySelector('.welcome h2');
-    if (currentUser && currentUser.name) {
-      welcomeMessage.textContent = `Hello, ${currentUser.name}!`;
-      welcomeMessage.style.visibility = 'visible';
-    }
+            // Fetch user's courses from local storage
+            const courses = currentUser.courses || [];
 
-    document.getElementById('logout').addEventListener('click', function () {
-      localStorage.removeItem('currentUser');
-      alert('Logged out successfully. Redirecting...');
-      window.location.href = 'login.html';
+            if (courses.length > 0) {
+                noCoursesMessage.style.display = 'none';
+                courses.forEach(course => {
+                    const li = document.createElement('li');
+                    li.textContent = course;
+                    courseList.appendChild(li);
+                });
+            } else {
+                noCoursesMessage.style.display = 'block';
+            }
+        } else {
+            alert('No user logged in. Redirecting to login page.');
+            window.location.href = 'login.html';
+        }
+
+        // Function to redirect to course registration page
+        function registerForCourses() {
+            window.location.href = 'course_registration.html';
+        }
+		
+		// Function to display courses or show Google Form link
+function displayDashboardCourses() {
+  const coursesContainer = document.getElementById('courses-container'); // Assuming this is the container where courses are displayed
+  
+  if (userCourses && userCourses.length > 0) {
+    // Display courses the user is registered for
+    const allCourses = JSON.parse(localStorage.getItem('courses')).courses;
+    allCourses.forEach(course => {
+      if (userCourses.includes(course.title)) {
+        const courseElement = document.createElement('div');
+        courseElement.classList.add('course');
+        courseElement.innerHTML = `
+          <h3>${course.title}</h3>
+          <p>${course.description}</p>
+          <p><strong>Duration:</strong> ${course.duration}</p>
+          <p><strong>Instructor:</strong> ${course.instructor}</p>
+          <button onclick="toggleEnrollment(${course.id})">${course.enrolled ? 'Unenroll' : 'Enroll'}</button>
+        `;
+        coursesContainer.appendChild(courseElement);
+      }
     });
-  </script>
+  } else {
+    // If no courses are registered, show the Google Form link
+    const formLinkContainer = document.createElement('div');
+    formLinkContainer.innerHTML = `
+      <p>You have not registered for any courses yet. Please register using the Google Form:</p>
+      <a href="YOUR_GOOGLE_FORM_LINK" target="_blank">Register for Courses</a>
+    `;
+    coursesContainer.appendChild(formLinkContainer);
+  }
+}
+
+// Call this function after the dashboard loads
+displayDashboardCourses();
+
+    </script>
 </body>
 </html>

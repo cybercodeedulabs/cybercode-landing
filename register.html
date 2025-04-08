@@ -1,83 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <meta name="description" content="Cybercode EduLabs offers training in AWS, CCNA, DevOps, and more.">
-  <meta name="keywords" content="Cybercode, EduLabs, training, AWS, CCNA, cloud, cybersecurity">
-  <link rel="icon" type="image/png" href="favicon.png">
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register | Cybercode EduLabs</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-
-    header {
-      background-color: #333;
-      color: white;
-      padding: 10px;
-    }
-
-    main {
-      margin-top: 20px;
-    }
-
-    form {
-      max-width: 400px;
-    }
-
-    label,
-    input {
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    button {
-      padding: 10px 15px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Cybercode EduLabs</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        h1 {
+            font-size: 28px;
+            color: #0056b3;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .footer {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Register</h1>
-  </header>
-  <main>
-    <form id="registerForm">
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" name="fullname" required /><br />
+    <div class="container">
+        <div class="header">
+            <img src="images/logo.png" alt="Cybercode EduLabs Logo">
+            <h1>Register</h1>
+        </div>
+        <form id="registerForm">
+            <input type="text" id="username" placeholder="Enter your username" required>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+            <button type="submit">Register</button>
+        </form>
+        <p class="error" id="error"></p>
+        <div class="footer">
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required /><br />
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            event.preventDefault();
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required /><br />
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirmPassword').value.trim();
+            const errorElement = document.getElementById('error');
 
-      <button type="submit">Register</button>
-    </form>
-  </main>
+            errorElement.textContent = '';
 
-  <script>
-    document.querySelector('#registerForm').addEventListener('submit', function (event) {
-      event.preventDefault(); // Prevent the form's default submit action
+            // Validation
+            if (!username || username.length < 6) {
+                errorElement.textContent = 'Username must be at least 6 characters.';
+                return;
+            }
 
-      const username = document.querySelector('#name').value;
-      const email = document.querySelector('#email').value;
-      const password = document.querySelector('#password').value;
+            if (!password || password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/\d/.test(password) || !/[^a-zA-Z\d]/.test(password)) {
+                errorElement.textContent = 'Password must be at least 8 characters, include uppercase, lowercase, a number, and a special character.';
+                return;
+            }
 
-      if (username && email && password) {
-        // Save user data to local storage
-        const newUser = { name: username, email: email, password: password };
-        localStorage.setItem('currentUser', JSON.stringify(newUser));
+            if (password !== confirmPassword) {
+                errorElement.textContent = 'Passwords do not match.';
+                return;
+            }
 
-        alert('Registration successful! Redirecting to login page.');
-        window.location.href = 'login.html'; // Redirect to login page
-      } else {
-        alert('Please fill out all fields.');
-      }
-    });
-  </script>
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            if (users.some(user => user.username === username)) {
+                errorElement.textContent = 'Username already exists. Please choose another.';
+                return;
+            }
+
+            // Save user
+            users.push({ username, password });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            alert('Registration successful! Redirecting to login page.');
+            window.location.href = 'login.html';
+        });
+    </script>
 </body>
 </html>
