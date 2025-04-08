@@ -57,7 +57,7 @@
       color: #666;
     }
   </style>
-  <link rel="icon" type="image/png" href="favicon.png" onerror="this.href='default-favicon.png';">
+  <link rel="icon" type="image/png" href="favicon.png" onerror="this.href='images/logo.png';">
 </head>
 <body>
   <div class="login-container">
@@ -94,6 +94,16 @@
         alert('Invalid username or password.');
       }
     });
+	
+	    function validateLoginForm() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      if (!email || !password) {
+        alert("Please fill in both email and password.");
+        return false;
+      }
+      return true;
+    }
   </script>
 </body>
 </html>
