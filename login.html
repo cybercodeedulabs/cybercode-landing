@@ -36,6 +36,10 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
+    .login-container input:focus {
+      outline: none;
+      border-color: #008080;
+    }
     .login-container button {
       background-color: #008080;
       color: white;
@@ -53,65 +57,43 @@
       color: #666;
     }
   </style>
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="favicon.png" onerror="this.href='default-favicon.png';">
 </head>
 <body>
   <div class="login-container">
     <h1>Login to Cybercode EduLabs</h1>
-    <form action="dashboard.html" method="GET">
-      <input type="text" name="username" placeholder="Enter your username" required>
-      <input type="password" name="password" placeholder="Enter your password" required>
+    <form id="loginForm">
+      <input type="text" id="username" name="username" placeholder="Enter your username" required>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
       <button type="submit">Login</button>
     </form>
-<script>
-  // Check for logged-in user
-const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-if (!currentUser || !currentUser.name) {
-  if (confirm('You are not logged in. Would you like to register?')) {
-    window.location.href = 'register.html';
-  } else {
-    alert('You must log in first.');
-    window.location.href = 'login.html';
-  }
-} else {
-  document.querySelector('.welcome h2').textContent = `Hello, ${currentUser.name}!`;
-}
-
-// Logout functionality
-document.getElementById('logout').addEventListener('click', function () {
-  localStorage.removeItem('currentUser');
-  alert('Logged out successfully.');
-  window.location.href = 'login.html';
-  });
-  document.querySelector('form').addEventListener('submit', function (e) {
-  e.preventDefault();
-  const email = document.querySelector('#email').value;
-  const password = document.querySelector('#password').value;
-
-  // Mock user validation
-  const registeredUser = JSON.parse(localStorage.getItem('registeredUser'));
-  if (registeredUser && registeredUser.email === email && registeredUser.password === password) {
-    const currentUser = { name: registeredUser.name, email: registeredUser.email };
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    alert('Login successful!');
-    window.location.href = 'dashboard.html';
-  } else {
-    alert('Invalid email or password.');
-  }
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  if (currentUser) {
-    alert('You are already logged in. Redirecting to the dashboard.');
-    window.location.href = 'dashboard.html';
-  }
-});
-
-</script>
-
     <p>&copy; 2025 Cybercode EduLabs</p>
   </div>
-</body>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!username || !password) {
+        alert('Please fill out all fields.');
+        return;
+      }
+
+      // Mock user validation
+      const registeredUser = JSON.parse(localStorage.getItem('registeredUser'));
+
+      if (registeredUser && registeredUser.username === username && registeredUser.password === password) {
+        const currentUser = { name: registeredUser.name, username: registeredUser.username };
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        alert('Login successful!');
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Invalid username or password.');
+      }
+    });
+  </script>
 </body>
 </html>
