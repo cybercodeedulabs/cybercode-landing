@@ -162,7 +162,8 @@
   <script>
     let currentUser;
     try {
-      currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      const storedUser = localStorage.getItem('currentUser');
+      currentUser = storedUser ? JSON.parse(storedUser) : null;
       if (!currentUser || !currentUser.name) throw new Error();
     } catch (error) {
       alert('You must log in first.');
@@ -170,11 +171,13 @@
     }
 
     const welcomeMessage = document.querySelector('.welcome h2');
-    welcomeMessage.textContent = `Hello, ${currentUser.name}!`;
-    welcomeMessage.style.visibility = 'visible';
+    if (currentUser && currentUser.name) {
+      welcomeMessage.textContent = `Hello, ${currentUser.name}!`;
+      welcomeMessage.style.visibility = 'visible';
+    }
 
     document.getElementById('logout').addEventListener('click', function () {
-      localStorage.clear();
+      localStorage.removeItem('currentUser');
       alert('Logged out successfully. Redirecting...');
       window.location.href = 'login.html';
     });
