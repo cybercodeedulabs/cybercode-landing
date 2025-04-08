@@ -240,7 +240,6 @@
     </div>
     <p>Your gateway to professional tech training</p>
     <div style="display: flex; align-items: center; gap: 20px;">
-    <p>Welcome to Your Learning Dashboard</p>
     <a href="login.html" style="
       padding: 10px 20px; 
       background-color: #fff; 
@@ -533,6 +532,26 @@
       });
     });
   </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    const studentLoginButton = document.getElementById('studentLogin');
+
+    studentLoginButton.addEventListener('click', function (e) {
+      if (currentUser) {
+        // Redirect to the dashboard directly if logged in
+        alert('Welcome back! Redirecting to your dashboard.');
+        window.location.href = 'dashboard.html';
+      } else {
+        // Redirect to login page
+        window.location.href = 'login.html';
+      }
+    });
+  });
+</script>
+
   
 </body>
 </html>
