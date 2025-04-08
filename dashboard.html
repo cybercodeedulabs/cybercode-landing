@@ -184,7 +184,7 @@ function displayDashboardCourses() {
     const formLinkContainer = document.createElement('div');
     formLinkContainer.innerHTML = `
       <p>You have not registered for any courses yet. Please register using the Google Form:</p>
-      <a href="YOUR_GOOGLE_FORM_LINK" target="_blank">Register for Courses</a>
+      <a href="https://forms.gle/fWWhSeYP5qbmttyP8" target="_blank">Register for Courses</a>
     `;
     coursesContainer.appendChild(formLinkContainer);
   }
@@ -194,5 +194,22 @@ function displayDashboardCourses() {
 displayDashboardCourses();
 
     </script>
+	
+	<div>
+  <p id="noCoursesMsg">You have not registered for any courses yet. Please <a href="index.html">register here</a>.</p>
+  <ul id="courseList" style="list-style: none; padding: 0;"></ul>
+</div>
+
+
+<script>
+  const course = localStorage.getItem('registeredCourse');
+
+  if (course) {
+    document.getElementById("courseList").innerHTML = `<li style="margin: 10px 0; font-weight: bold;">✅ ${course}</li>`;
+    document.getElementById("noCoursesMsg").style.display = 'none';
+  } else {
+    document.getElementById("courseList").style.display = 'none';
+  }
+</script>
 </body>
 </html>

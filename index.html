@@ -554,6 +554,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </script>
 
-  
+
+<button onclick="registerCourse('AWS')" style="margin: 5px;">Register for AWS</button>
+<button onclick="registerCourse('Azure')" style="margin: 5px;">Register for Azure</button>
+<button onclick="registerCourse('Google Cloud')" style="margin: 5px;">Register for Google Cloud</button>
+<button onclick="registerCourse('Linux')" style="margin: 5px;">Register for Linux</button>
+<button onclick="registerCourse('DevOps')" style="margin: 5px;">Register for DevOps</button>
+<button onclick="registerCourse('CCNA')" style="margin: 5px;">Register for CCNA</button>
+<button onclick="registerCourse('Ethical Hacking')" style="margin: 5px;">Register for Ethical Hacking</button>
+<button onclick="registerCourse('Python')" style="margin: 5px;">Register for Python</button>
+<button onclick="registerCourse('Java')" style="margin: 5px;">Register for Java</button>
+<button onclick="registerCourse('JavaScript')" style="margin: 5px;">Register for JavaScript</button>
+<button onclick="registerCourse('Data Science')" style="margin: 5px;">Register for Data Science</button>
+<button onclick="registerCourse('AI/ML')" style="margin: 5px;">Register for AI/ML</button>
+<button onclick="registerCourse('Kubernetes')" style="margin: 5px;">Register for Kubernetes</button>
+<button onclick="registerCourse('Docker')" style="margin: 5px;">Register for Docker</button>
+<button onclick="registerCourse('Ansible')" style="margin: 5px;">Register for Ansible</button>
+<button onclick="registerCourse('Terraform')" style="margin: 5px;">Register for Terraform</button>
+<button onclick="registerCourse('Networking Basics')" style="margin: 5px;">Register for Networking Basics</button>
+<button onclick="registerCourse('Cybersecurity')" style="margin: 5px;">Register for Cybersecurity</button>
+
+<script>
+  function registerCourse(courseName) {
+    localStorage.setItem('registeredCourse', courseName);
+    window.open('https://forms.gle/fWWhSeYP5qbmttyP8', '_blank');
+  }
+</script>  
 </body>
 </html>
