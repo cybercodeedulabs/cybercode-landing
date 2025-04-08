@@ -64,25 +64,27 @@
       <button type="submit">Login</button>
     </form>
 <script>
-  document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+  // Check for logged-in user
+const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+if (!currentUser || !currentUser.name) {
+  if (confirm('You are not logged in. Would you like to register?')) {
+    window.location.href = 'register.html';
+  } else {
+    alert('You must log in first.');
+    window.location.href = 'login.html';
+  }
+} else {
+  document.querySelector('.welcome h2').textContent = `Hello, ${currentUser.name}!`;
+}
 
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const user = users.find(user => user.email === email && user.password === password);
-
-    if (user) {
-      localStorage.setItem('currentUser', JSON.stringify(user));
-      alert('Login successful!');
-      window.location.href = 'dashboard.html';
-    } else {
-      if (confirm('Invalid email or password. Would you like to register instead?')) {
-        window.location.href = 'register.html';
-      }
-    }
+// Logout functionality
+document.getElementById('logout').addEventListener('click', function () {
+  localStorage.removeItem('currentUser');
+  alert('Logged out successfully.');
+  window.location.href = 'login.html';
   });
 </script>
+
     <p>&copy; 2025 Cybercode EduLabs</p>
   </div>
 </body>
