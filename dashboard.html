@@ -160,13 +160,13 @@
   </footer>
 
   <script>
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) {
-      alert('You must log in first.');
-      window.location.href = 'login.html';
-    } else {
-      document.querySelector('.welcome h2').textContent = `Hello, ${currentUser.name}!`;
-    }
+const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+if (!currentUser) {
+  alert('You must log in first.');
+  window.location.href = 'login.html';
+} else {
+  document.querySelector('.welcome h2').textContent = `Hello, ${currentUser.name}!`;
+}
 
     document.getElementById('logout').addEventListener('click', function () {
       localStorage.removeItem('currentUser');
