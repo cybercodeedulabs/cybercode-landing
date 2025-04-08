@@ -56,12 +56,13 @@
   <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-  <form id="loginForm">
-    <h1>Login</h1>
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-  </form>
+  <div class="login-container">
+    <h1>Login to Cybercode EduLabs</h1>
+    <form action="dashboard.html" method="GET">
+      <input type="text" name="username" placeholder="Enter your username" required>
+      <input type="password" name="password" placeholder="Enter your password" required>
+      <button type="submit">Login</button>
+    </form>
 <script>
   document.getElementById('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -82,6 +83,8 @@
     }
   });
 </script>
+    <p>&copy; 2025 Cybercode EduLabs</p>
+  </div>
 </body>
 </body>
 </html>
