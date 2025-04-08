@@ -37,6 +37,7 @@
     }
     .welcome h2 {
       color: #008080;
+      visibility: hidden;
     }
     .courses-list {
       display: grid;
@@ -88,12 +89,11 @@
       margin-top: 20px;
     }
   </style>
-  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
   <header>
     <div style="display: flex; align-items: center;">
-      <img src="images/logo.png" alt="Cybercode EduLabs Logo" />
+      <img src="images/logo.png" alt="Cybercode EduLabs Logo" onerror="this.src='images/default-logo.png';" />
       <h1>Cybercode EduLabs</h1>
     </div>
     <div style="display: flex; align-items: center; gap: 20px;">
@@ -117,25 +117,6 @@
         font-weight: bold;">
         Register
       </a>
-      <a href="dashboard.html" id="dashboardButton" style="
-        padding: 10px 20px; 
-        background-color: #006666; 
-        color: white; 
-        text-decoration: none; 
-        border-radius: 5px; 
-        font-weight: bold; 
-        display: none;">
-      Dashboard
-      </a>
-	  <a href="#" id="logout" style="
-        padding: 10px 20px; 
-        background-color: red; 
-        color: white; 
-        text-decoration: none; 
-        border-radius: 5px; 
-        font-weight: bold;">
-      Logout
-      </a>
     </div>
   </header>
 
@@ -149,27 +130,27 @@
     <div class="courses-list">
       <div class="course-card">
         <h3>Golang</h3>
-        <a href="courses/golang.html">Go to Course</a>
+        <a href="courses/golang.html" aria-label="Access Golang Course">Go to Course</a>
       </div>
       <div class="course-card">
         <h3>AWS Certified Training</h3>
-        <a href="courses/aws.html">Go to Course</a>
+        <a href="courses/aws.html" aria-label="Access AWS Certified Training Course">Go to Course</a>
       </div>
       <div class="course-card">
         <h3>DevOps (Docker & Kubernetes)</h3>
-        <a href="courses/devops.html">Go to Course</a>
+        <a href="courses/devops.html" aria-label="Access DevOps Course">Go to Course</a>
       </div>
       <div class="course-card">
         <h3>Python Programming (Job-Focused)</h3>
-        <a href="courses/python.html">Go to Course</a>
+        <a href="courses/python.html" aria-label="Access Python Programming Course">Go to Course</a>
       </div>
       <div class="course-card">
         <h3>Machine Learning with AWS</h3>
-        <a href="courses/ml-aws.html">Go to Course</a>
+        <a href="courses/ml-aws.html" aria-label="Access Machine Learning with AWS Course">Go to Course</a>
       </div>
       <div class="course-card">
         <h3>Cloud Security & DevSecOps</h3>
-        <a href="courses/cloud-security.html">Go to Course</a>
+        <a href="courses/cloud-security.html" aria-label="Access Cloud Security Course">Go to Course</a>
       </div>
     </div>
   </div>
@@ -178,39 +159,25 @@
     <p>&copy; 2025 Cybercode EduLabs. All Rights Reserved.</p>
   </footer>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-    const loginButton = document.getElementById('loginButton');
-    const registerButton = document.getElementById('registerButton');
-    const dashboardButton = document.getElementById('dashboardButton');
-
-    // If user is logged in, hide Login/Register and show Dashboard
-    if (currentUser && currentUser.name) {
-      loginButton.style.display = 'none';
-      registerButton.style.display = 'none';
-      dashboardButton.style.display = 'inline-block';
-
-      // Update the greeting
-      document.querySelector('.welcome h2').textContent = `Hello, ${currentUser.name}!`;
-    } else {
-      // Redirect to login page if the user is not logged in
+  <script>
+    let currentUser;
+    try {
+      currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      if (!currentUser || !currentUser.name) throw new Error();
+    } catch (error) {
       alert('You must log in first.');
       window.location.href = 'login.html';
     }
 
-    // Logout functionality
-    document.getElementById('logout').addEventListener('click', function () {
-      const confirmLogout = confirm('Are you sure you want to log out?');
-      if (confirmLogout) {
-        localStorage.removeItem('currentUser');
-        alert('Logged out successfully.');
-        window.location.href = 'login.html';
-      }
-    });
-  });
-</script>
+    const welcomeMessage = document.querySelector('.welcome h2');
+    welcomeMessage.textContent = `Hello, ${currentUser.name}!`;
+    welcomeMessage.style.visibility = 'visible';
 
+    document.getElementById('logout').addEventListener('click', function () {
+      localStorage.clear();
+      alert('Logged out successfully. Redirecting...');
+      window.location.href = 'login.html';
+    });
+  </script>
 </body>
 </html>
