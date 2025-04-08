@@ -77,43 +77,54 @@
       padding: 20px;
       margin-top: 20px;
     }
-  </style>
-</head>
-<body>
-<header>
-  <div style="display: flex; align-items: center;">
-    <img src="images/logo.png" alt="Cybercode EduLabs Logo" />
-    <h1>Cybercode EduLabs</h1>
-  </div>
-  <div style="display: flex; align-items: center; gap: 20px;">
-    <p>Welcome to Your Learning Dashboard</p>
-    <a href="login.html" style="
+    #logout {
       padding: 10px 20px; 
-      background-color: #fff; 
-      color: #008080; 
-      text-decoration: none; 
-      border-radius: 5px; 
-      font-weight: bold; 
-      border: 2px solid #008080;">
-      Login
-    </a>
-    <a href="register.html" style="
-      padding: 10px 20px; 
-      background-color: #008080; 
+      background-color: red; 
       color: white; 
       text-decoration: none; 
       border-radius: 5px; 
-      font-weight: bold;">
-      Register
-    </a>
-  </div>
-</header>
-
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 20px;
+    }
+  </style>
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="images/logo.png" alt="Cybercode EduLabs Logo" />
+      <h1>Cybercode EduLabs</h1>
+    </div>
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <p>Welcome to Your Learning Dashboard</p>
+      <a href="login.html" style="
+        padding: 10px 20px; 
+        background-color: #fff; 
+        color: #008080; 
+        text-decoration: none; 
+        border-radius: 5px; 
+        font-weight: bold; 
+        border: 2px solid #008080;">
+        Login
+      </a>
+      <a href="register.html" style="
+        padding: 10px 20px; 
+        background-color: #008080; 
+        color: white; 
+        text-decoration: none; 
+        border-radius: 5px; 
+        font-weight: bold;">
+        Register
+      </a>
+    </div>
+  </header>
 
   <div class="dashboard">
     <div class="welcome">
       <h2>Hello, [Student Name]!</h2>
       <p>Here are your enrolled courses. Click on a course to access its materials and track your progress.</p>
+      <a href="#" id="logout">Logout</a>
     </div>
 
     <div class="courses-list">
@@ -147,5 +158,21 @@
   <footer>
     <p>&copy; 2025 Cybercode EduLabs. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+      alert('You must log in first.');
+      window.location.href = 'login.html';
+    } else {
+      document.querySelector('.welcome h2').textContent = `Hello, ${currentUser.name}!`;
+    }
+
+    document.getElementById('logout').addEventListener('click', function () {
+      localStorage.removeItem('currentUser');
+      alert('Logged out successfully.');
+      window.location.href = 'login.html';
+    });
+  </script>
 </body>
 </html>
