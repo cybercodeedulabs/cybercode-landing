@@ -240,16 +240,9 @@
     </div>
     <p>Your gateway to professional tech training</p>
     <div style="display: flex; align-items: center; gap: 20px;">
-    <a href="login.html" style="
-      padding: 10px 20px; 
-      background-color: #fff; 
-      color: #008080; 
-      text-decoration: none; 
-      border-radius: 5px; 
-      font-weight: bold; 
-      border: 2px solid #008080;">
-      Student Login
-    </a>
+      <a id="studentLogin" href="#" style="padding: 10px 20px; background-color: #008080; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+        Student Login
+      </a>
   </div>
   </header>
 
@@ -536,17 +529,17 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
     const studentLoginButton = document.getElementById('studentLogin');
 
     studentLoginButton.addEventListener('click', function (e) {
+      e.preventDefault(); // Prevent default anchor behavior
+
       if (currentUser) {
-        // Redirect to the dashboard directly if logged in
         alert('Welcome back! Redirecting to your dashboard.');
-        window.location.href = 'dashboard.html';
+        window.location.href = 'dashboard.html'; // Redirect to the dashboard
       } else {
-        // Redirect to login page
-        window.location.href = 'login.html';
+        alert('You are not logged in. Redirecting to the login page.');
+        window.location.href = 'login.html'; // Redirect to login page
       }
     });
   });
