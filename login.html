@@ -1,202 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Cybercode EduLabs</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: #fff;
-        }
-        .container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            width: 350px;
-            text-align: center;
-        }
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .logo-container img {
-            width: 40px;
-            height: 40px;
-        }
-        .logo-container h1 {
-            font-size: 28px;
-            margin: 0;
-            color: #0056b3;
-        }
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .error {
-            color: red;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-        .footer {
-            margin-top: 15px;
-            font-size: 14px;
-        }
-        .footer a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-		/* CSS for course display */
-.course {
-  margin: 20px 0;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-.course h3 {
-  font-size: 1.2em;
-}
-.course button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
-
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Cybercode EduLabs</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      width: 350px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #0056b3;
+    }
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .footer {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .g_id_signin {
+      margin-top: 15px;
+    }
+  </style>
+  <!-- Google Sign-In Script -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-    <div class="container">
-                <div class="logo-container">
-            <img src="images/logo.png" alt="Cybercode EduLabs Logo">
-            <h1>Cybercode EduLabs</h1>
-        </div>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Enter your username" required>
-            <input type="password" id="password" placeholder="Enter your password" required>
-            <button type="submit">Login</button>
-        </form>
-        <p class="error" id="error"></p>
-        <div class="footer">
-            <p>Don't have an account? <a href="register.html">Register here</a></p>
-        </div>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- Google Sign-In Button -->
+    <div id="g_id_onload"
+         data-client_id="846973684538-m7ueumv7p4rgkg9pkjo647mg1neouv1k.apps.googleusercontent.com"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false">
     </div>
 
-    <script>
-        // Redirect Logic
-        document.addEventListener('DOMContentLoaded', function () {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
+    <div class="g_id_signin"
+         data-type="standard"
+         data-shape="pill"
+         data-theme="outline"
+         data-text="sign_in_with"
+         data-size="large"
+         data-logo_alignment="left">
+    </div>
 
-            if (users.length === 0) {
-                // No users found, redirect to register
-                window.location.href = 'register.html';
-            }
-        });
+    <div class="footer">
+      <p>Don't have an account? <a href="register.html">Register</a></p>
+    </div>
+  </div>
 
-        // Enhanced Login Validation Logic
-        document.getElementById('loginForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+  <script>
+    // Manual login handler (local storage)
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
 
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-			const userCourses = JSON.parse(localStorage.getItem('userCourses'));
+      const storedUser = JSON.parse(localStorage.getItem('currentUser'));
 
-            // Input validation
-            if (!username || !password) {
-                document.getElementById('error').textContent = 'Please fill in both fields.';
-                return;
-            }
-
-            // User validation
-            const user = users.find(user => user.username === username);
-
-            if (!user) {
-                document.getElementById('error').textContent = 'User not registered. Redirecting to register...';
-                setTimeout(() => {
-                    window.location.href = 'register.html';
-                }, 2000);
-                return;
-            }
-
-            // Password validation
-            if (user.password !== password) {
-                document.getElementById('error').textContent = 'Invalid username or password.';
-                return;
-            }
-
-            // Successful login
-            alert(`Welcome, ${username}!`);
-            window.location.href = 'dashboard.html';
-			
-			// Function to check and display registered courses
-function displayRegisteredCourses() {
-  const coursesContainer = document.getElementById('courses-container'); // Assuming you have a container with this ID
-  
-  if (userCourses && userCourses.length > 0) {
-    // Courses are registered; display only those
-    const allCourses = JSON.parse(localStorage.getItem('courses')).courses; // Assuming 'courses' is an array stored in localStorage
-    allCourses.forEach(course => {
-      if (userCourses.includes(course.title)) {
-        const courseElement = document.createElement('div');
-        courseElement.classList.add('course');
-        courseElement.innerHTML = `
-          <h3>${course.title}</h3>
-          <p>${course.description}</p>
-          <p><strong>Duration:</strong> ${course.duration}</p>
-          <p><strong>Instructor:</strong> ${course.instructor}</p>
-          <button onclick="toggleEnrollment(${course.id})">${course.enrolled ? 'Unenroll' : 'Enroll'}</button>
-        `;
-        coursesContainer.appendChild(courseElement);
+      if (storedUser && storedUser.email === email && storedUser.password === password) {
+        alert("Login successful!");
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Invalid email or password.");
       }
     });
-  } else {
-    // No courses registered; show the Google Form link
-    const formLinkContainer = document.createElement('div');
-    formLinkContainer.innerHTML = `
-      <p>You have not registered for any courses yet. Please register using the Google Form:</p>
-      <a href="YOUR_GOOGLE_FORM_LINK" target="_blank">Register for Courses</a>
-    `;
-    coursesContainer.appendChild(formLinkContainer);
-  }
-}
 
-// Call display function after successful login
-displayRegisteredCourses();
+    // Google Sign-In Handler
+    function handleCredentialResponse(response) {
+      const data = parseJwt(response.credential);
 
-        });
-    </script>
+      const user = {
+        username: data.name,
+        email: data.email,
+        picture: data.picture
+      };
+
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      alert(`Welcome ${user.username}! Redirecting to dashboard...`);
+      window.location.href = "dashboard.html";
+    }
+
+    function parseJwt(token) {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      return JSON.parse(jsonPayload);
+    }
+  </script>
 </body>
 </html>
