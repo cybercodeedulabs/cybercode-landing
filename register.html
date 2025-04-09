@@ -1,140 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register - Cybercode EduLabs</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: #fff;
-        }
-        .container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            width: 350px;
-            text-align: center;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .header img {
-            height: 40px;
-            margin-right: 10px;
-        }
-        h1 {
-            font-size: 28px;
-            color: #0056b3;
-        }
-        input {
+    <link rel="icon" href="favicon.png" type="image/png" />
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #004aad, #2c2c54);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    "
+  >
+    <div
+      style="
+        background-color: white;
+        padding: 40px;
+        border-radius: 12px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      "
+    >
+      <img
+        src="images/logo.png"
+        alt="Cybercode Logo"
+        style="width: 140px; margin-bottom: 20px"
+      />
+      <h2 style="color: #004aad; margin-bottom: 10px">Register for Course</h2>
+      <p style="font-size: 14px; color: #333">
+        Please fill in your details below.
+      </p>
+      <form id="registerForm" style="margin-top: 20px">
+        <input
+          type="text"
+          id="name"
+          placeholder="Full Name"
+          required
+          style="
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 16px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px 20px;
+          "
+        />
+        <input
+          type="email"
+          id="email"
+          placeholder="Email"
+          required
+          style="
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
             border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .error {
-            color: red;
-            font-size: 14px;
+          "
+        />
+        <select
+          id="course"
+          required
+          style="
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+          "
+        >
+          <option value="">Select Course</option>
+          <option value="Python Programming">Python Programming</option>
+          <option value="Web Development">Web Development</option>
+          <option value="AI & ML Fundamentals">AI & ML Fundamentals</option>
+          <option value="Java Programming">Java Programming</option>
+          <option value="Cybersecurity">Cybersecurity</option>
+          <option value="Cloud Computing">Cloud Computing</option>
+          <option value="UI/UX Design">UI/UX Design</option>
+          <option value="DevOps Essentials">DevOps Essentials</option>
+          <option value="Android App Development">
+            Android App Development
+          </option>
+          <option value="iOS App Development">iOS App Development</option>
+          <option value="Blockchain Basics">Blockchain Basics</option>
+          <option value="AR/VR Development">AR/VR Development</option>
+          <option value="Game Development">Game Development</option>
+          <option value="Data Analytics">Data Analytics</option>
+          <option value="Full Stack Development">
+            Full Stack Development
+          </option>
+          <option value="Digital Marketing">Digital Marketing</option>
+          <option value="Networking Fundamentals">
+            Networking Fundamentals
+          </option>
+          <option value="Robotics & Automation">Robotics & Automation</option>
+        </select>
+        <button
+          type="submit"
+          style="
+            background-color: #004aad;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
             margin-top: 10px;
-        }
-        .footer {
-            margin-top: 15px;
-            font-size: 14px;
-        }
-        .footer a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <img src="images/logo.png" alt="Cybercode EduLabs Logo">
-            <h1>Register</h1>
-        </div>
-        <form id="registerForm">
-            <input type="text" id="username" placeholder="Enter your username" required>
-            <input type="password" id="password" placeholder="Enter your password" required>
-            <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
-            <button type="submit">Register</button>
-        </form>
-        <p class="error" id="error"></p>
-        <div class="footer">
-            <p>Already have an account? <a href="login.html">Login here</a></p>
-        </div>
+            cursor: pointer;
+          "
+        >
+          Register
+        </button>
+      </form>
+      <p style="font-size: 14px; color: #555; margin-top: 15px">
+        Already registered?
+        <a href="dashboard.html" style="color: #004aad; text-decoration: none"
+          >Go to Dashboard</a
+        >
+      </p>
     </div>
 
     <script>
-        document.getElementById('registerForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+      // Redirect if user is already registered/logged in
+      const existingUser = localStorage.getItem("currentUser");
+      if (existingUser) {
+        window.location.href = "dashboard.html";
+      }
 
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const confirmPassword = document.getElementById('confirmPassword').value.trim();
-            const errorElement = document.getElementById('error');
+      const form = document.getElementById("registerForm");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const course = document.getElementById("course").value;
 
-            errorElement.textContent = '';
+        if (!name || !email || !course) {
+          alert("Please fill all the details.");
+          return;
+        }
 
-            // Validation
-            if (!username || username.length < 6) {
-                errorElement.textContent = 'Username must be at least 6 characters.';
-                return;
-            }
+        const userData = {
+          name: name,
+          email: email,
+          course: course,
+        };
 
-            if (!password || password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/\d/.test(password) || !/[^a-zA-Z\d]/.test(password)) {
-                errorElement.textContent = 'Password must be at least 8 characters, include uppercase, lowercase, a number, and a special character.';
-                return;
-            }
+        localStorage.setItem("currentUser", JSON.stringify(userData));
+        localStorage.setItem("registeredCourse", course);
 
-            if (password !== confirmPassword) {
-                errorElement.textContent = 'Passwords do not match.';
-                return;
-            }
-
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-
-            if (users.some(user => user.username === username)) {
-                errorElement.textContent = 'Username already exists. Please choose another.';
-                return;
-            }
-
-            // Save user
-            users.push({ username, password });
-            localStorage.setItem('users', JSON.stringify(users));
-
-            alert('Registration successful! Redirecting to login page.');
-            window.location.href = 'login.html';
-        });
+        alert("Registration successful! Redirecting to your dashboard...");
+        window.location.href = "dashboard.html";
+      });
     </script>
-</body>
+  </body>
 </html>

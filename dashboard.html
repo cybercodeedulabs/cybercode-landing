@@ -1,124 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard - Cybercode EduLabs</title>
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0;
-      padding: 20px;
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      color: #fff;
-    }
-    .container {
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      width: 400px;
-      text-align: center;
-      color: #000;
-    }
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    .header img {
-      height: 40px;
-      margin-right: 10px;
-    }
-    h1 {
-      font-size: 28px;
-      color: #0056b3;
-    }
-    p {
-      font-size: 16px;
-      margin: 10px 0;
-    }
-    .footer {
-      margin-top: 15px;
-      font-size: 14px;
-    }
-    .footer a {
-      color: #007bff;
-      text-decoration: none;
-    }
-    .footer a:hover {
-      text-decoration: underline;
-    }
-    button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      background: #007bff;
-      color: white;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <img src="images/logo.png" alt="Cybercode EduLabs Logo"/>
-      <h1>Student Dashboard</h1>
-    </div>
-    <p>Welcome, <span id="username">Student</span>!</p>
-
-    <div class="courses">
-      <h2>Your Courses</h2>
-      <p id="noCoursesMsg">You have not registered for any courses yet. Please <a href="https://forms.gle/fWWhSeYP5qbmttyP8" target="_blank">register here</a>.</p>
-      <ul id="courseList"></ul>
-      <button onclick="registerForCourses()">Register for More Courses</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard - Cybercode EduLabs</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        background: linear-gradient(to right, #004aad, #2c2c54);
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .container {
+        background-color: #fff;
+        color: #333;
+        padding: 40px;
+        border-radius: 12px;
+        max-width: 600px;
+        width: 100%;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+      .logo {
+        margin-bottom: 20px;
+      }
+      .logo img {
+        width: 140px;
+      }
+      h2 {
+        color: #004aad;
+      }
+      .course-list {
+        margin-top: 20px;
+        text-align: left;
+      }
+      .logout-btn {
+        background-color: #004aad;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img src="images/logo.png" alt="Cybercode Logo" />
+      </div>
+      <h2>Welcome to Your Dashboard</h2>
+      <p id="welcomeText">Loading your details...</p>
+      <div class="course-list" id="courseContainer"></div>
+      <button class="logout-btn" onclick="logoutUser()">Logout</button>
     </div>
 
-    <div class="footer">
-      <p><a href="logout.html">Logout</a></p>
-    </div>
-  </div>
+    <script>
+      const user = JSON.parse(localStorage.getItem("currentUser"));
+      const courseContainer = document.getElementById("courseContainer");
+      const welcomeText = document.getElementById("welcomeText");
 
-  <script>
-    const user = JSON.parse(localStorage.getItem('currentUser'));
-    const course = localStorage.getItem('registeredCourse');
+      if (!user || !user.email) {
+        window.location.href = "index.html";
+      } else {
+        welcomeText.innerHTML = `Hello <strong>${user.name}</strong>! Fetching your registered courses...`;
+        fetch(
+          `https://script.google.com/macros/s/AKfycbw1XtKQOBfevYL5esVspkXYlGLtgcgjroPmyWb_yxy6sxqID19mSB-B45o8oGKZKxCt/exec?email=${encodeURIComponent(
+            user.email
+          )}`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            if (data && data.length > 0) {
+              const courseListHTML = data
+                .map(
+                  (entry, index) =>
+                    `<p><strong>Course ${index + 1}:</strong> ${entry.course}</p>`
+                )
+                .join("");
+              courseContainer.innerHTML = courseListHTML;
+            } else {
+              courseContainer.innerHTML =
+                "<p>You have not registered for any courses yet.</p>";
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+            courseContainer.innerHTML =
+              "<p>Error loading course data. Please try again later.</p>";
+          });
+      }
 
-    if (user && user.name) {
-      document.getElementById("username").textContent = user.name;
-    }
-
-    if (course) {
-      document.getElementById("courseList").innerHTML = `<li>✅ ${course}</li>`;
-      document.getElementById("noCoursesMsg").style.display = 'none';
-    } else {
-      document.getElementById("courseList").style.display = 'none';
-    }
-
-    function registerForCourses() {
-      window.open('https://forms.gle/fWWhSeYP5qbmttyP8', '_blank');
-    }
-  </script>
-</body>
+      function logoutUser() {
+        window.location.href = "logout.html";
+      }
+    </script>
+  </body>
 </html>
