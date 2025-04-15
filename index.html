@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cybercode EduLabs | Training Registration</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
+    /* Base styles */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -12,6 +15,8 @@
       background-color: #f5f5f5;
       color: #333;
     }
+    
+    /* Header styles */
     header {
       background-color: #008080;
       color: white;
@@ -25,116 +30,15 @@
       height: 60px;
       margin-right: 20px;
     }
-    .hero {
-      position: relative;
-      text-align: center;
-      padding: 30px;
-      background-color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .hero img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-top: 20px;
-    }
-    .intro, .why-choose, .internships, .courses, .note {
-      padding: 30px;
-      background-color: #ffffff;
-      margin: 15px 0;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    .courses ul {
-      list-style-type: disc;
-      padding-left: 0;
-      margin: auto;
-      max-width: 800px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px 40px;
-      text-align: left;
-    }
-    .courses li {
-      padding: 8px 0;
-    }
-    .courses a {
-      text-decoration: none;
-      color: #008080;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-    .courses a:hover {
-      color: #005959;
-      text-decoration: underline;
-    }
-    .form-section {
-      text-align: center;
-      padding: 40px;
-      background-color: #eefdfd;
-    }    
-    .register-top-right {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-    }
-    .hero-text h2 {
-      margin: 0;
-      font-size: 28px;
-      color: #008080;
-    }
-    .hero-text p {
-      margin: 10px 0 20px;
-      font-size: 18px;
-      color: #333;
-    }
-    .register-button-top {
-      background-color: #008080;
-      color: white;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-    .register-button-top:hover {
-      background-color: #006666;
-    }
-    .register-button {
-      background-color: #008080;
-      color: white;
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .register-button:hover {
-      background-color: #006666;
-    }
-    footer {
-      text-align: center;
-      background-color: #008080;
-      color: white;
-      padding: 20px;
-      margin-top: 20px;
-    }
-    footer a {
-      color: #fff;
-      text-decoration: underline;
-    }
-    h3 {
-      color: #008080;
-    }
+    
+    /* Navigation styles */
     .main-nav {
       background-color: #006666;
       padding: 10px 0;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .main-nav ul {
       list-style: none;
@@ -159,15 +63,180 @@
     .main-nav a:hover {
       background-color: #004d4d;
     }
+    
+    /* Hero section */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 30px;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .hero-text h2 {
+      margin: 0;
+      font-size: 28px;
+      color: #008080;
+    }
+    .hero-text p {
+      margin: 10px 0 20px;
+      font-size: 18px;
+      color: #333;
+    }
+    .register-top-right {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+    }
+    
+    /* Button styles */
+    .register-button-top {
+      background-color: #008080;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .register-button-top:hover {
+      background-color: #006666;
+    }
+    .register-button {
+      background-color: #008080;
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+    .register-button:hover {
+      background-color: #006666;
+    }
+    
+    /* Content sections */
+    .intro, .why-choose, .internships, .courses, .note {
+      padding: 30px;
+      background-color: #ffffff;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    
+    /* Courses grid */
+    .courses ul {
+      list-style-type: disc;
+      padding-left: 0;
+      margin: auto;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 8px 40px;
+      text-align: left;
+    }
+    .courses li {
+      padding: 8px 0;
+    }
+    .courses a {
+      text-decoration: none;
+      color: #008080;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .courses a:hover {
+      color: #005959;
+      text-decoration: underline;
+    }
+    
+    /* Form section */
+    .form-section {
+      text-align: center;
+      padding: 40px;
+      background-color: #eefdfd;
+    }
+    
+    /* Projects section */
+    .project-card {
+      width: 100%;
+      max-width: 300px;
+      background: #f0f0f0;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .project-card h3 {
+      color: #008080;
+    }
+    .project-card button {
+      background: #008080;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .project-card button:hover {
+      background: #006666;
+    }
+    
+    /* Slider */
+    .slider-container {
+      position: relative;
+      max-width: 1000px;
+      margin: auto;
+      overflow: hidden;
+    }
+    .slider-wrapper {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+    }
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #008080;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .slider-prev {
+      left: 10px;
+    }
+    .slider-next {
+      right: 10px;
+    }
+    
+    /* Testimonials */
     .testimonials-section {
       background-color: #f9f9f9;
       padding: 60px 20px;
       text-align: center;
-    }
-    .testimonials-section h2 {
-      font-size: 2rem;
-      color: #333;
-      margin-bottom: 30px;
     }
     .testimonial-container {
       display: flex;
@@ -182,20 +251,17 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       max-width: 300px;
       font-style: italic;
+      transition: transform 0.3s ease;
     }
-    .testimonial h4 {
-      margin-top: 15px;
-      color: #007BFF;
+    .testimonial:hover {
+      transform: translateY(-5px);
     }
+    
+    /* FAQ section */
     .faq-section {
       padding: 60px 20px;
       background-color: #fff;
       text-align: center;
-    }
-    .faq-section h2 {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: #333;
     }
     .faq-container {
       max-width: 800px;
@@ -217,19 +283,90 @@
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .faq-question:hover {
       background-color: #e0e0e0;
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 20px;
+    }
+    .faq-question.active::after {
+      content: '-';
     }
     .faq-answer {
       display: none;
       padding: 15px;
       background-color: #fafafa;
     }
-
     
+    /* Course registration buttons */
+    .course-registration {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 30px 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+    .course-button {
+      background-color: #008080;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+    .course-button:hover {
+      background-color: #006666;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      background-color: #008080;
+      color: white;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    
+    /* Media queries */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      header div {
+        margin: 10px 0;
+      }
+      .main-nav ul {
+        flex-direction: column;
+        gap: 5px;
+      }
+      .register-top-right {
+        position: static;
+        margin-top: 20px;
+      }
+      .courses ul {
+        grid-template-columns: 1fr;
+      }
+      .testimonial-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
   </style>
-  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 
@@ -240,14 +377,12 @@
     </div>
     <p>Your gateway to professional tech training</p>
     <div style="display: flex; align-items: center; gap: 20px;">
-      <a id="studentLogin" href="login.html" style="padding: 10px 20px; background-color: #008080; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;font-size: 16px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+      <a id="studentLogin" href="login.html" class="register-button-top">
         Student Login
       </a>
-  </div>
+    </div>
   </header>
   
-  
-
   <nav class="main-nav">
     <ul>
       <li><a href="#courses">Courses</a></li>
@@ -258,7 +393,6 @@
     </ul>
   </nav>
   
-
   <div class="hero">
     <div class="register-top-right">
       <a class="register-button-top" href="https://forms.gle/fWWhSeYP5qbmttyP8" target="_blank" rel="noopener noreferrer">
@@ -267,10 +401,8 @@
     </div>
   
     <div class="hero-text">
-      <!-- <h2>Unlock Your Potential with Expert-Led Training</h2> -->
-       <h2>Master Tech Skills. Build Real Projects. Get Job-Ready.</h2>
-      <!-- <p>Enroll in our industry-recognized courses and build your tech career</p> -->
-       <p>Join our expert-led courses and apply your learning with real-time industry projects.</p>
+      <h2>Master Tech Skills. Build Real Projects. Get Job-Ready.</h2>
+      <p>Join our expert-led courses and apply your learning with real-time industry projects.</p>
     </div>
   
     <img src="images/banner.png" alt="Training Banner" style="width: 100%; height: 350px; object-fit: cover;" />
@@ -303,153 +435,127 @@
       <li>Placement support & job referrals</li>
     </ul>
   </div>
-<section id="courses" style="background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(to right, #ffffff, #e0f7fa); padding: 60px 20px;">
-  <div class="courses">
-    <h3>Courses Offered:</h3>
-    <ul>
-      <li><a href="courses/golang.html" title="Click to explore Golang course">Golang</a></li>
-      <li><a href="courses/aws.html" title="Click to explore AWS course">AWS Certified Training</a></li>
-      <li><a href="courses/devops.html" title="Click to explore DevOps course">DevOps (Docker & Kubernetes)</a></li>
-      <li><a href="courses/openstack.html" title="Click to explore Linux & OpenStack">Private Cloud with OpenStack</a></li>
-      <li><a href="courses/python.html" title="Click to explore Python Programming">Python Programming(Job-Focused)</a></li>
-      <li><a href="courses/python-ds-ai.html" title="Click to explore Data Science & AI with Python">Python for Data Science & AI</a></li>
-      <li><a href="courses/ml-aws.html" title="Click to explore ML with AWS">Machine Learning with AWS</a></li>
-      <li><a href="courses/cloud-security.html" title="Click to explore Cloud Security">Cloud Security & DevSecOps</a></li>
-      <li><a href="courses/terraform.html" title="Click to explore Terraform & IaC">Terraform & Infrastructure as Code (IaC)</a></li>
-      <li><a href="courses/go-microservices.html" title="Click to explore Microservices with Go">Microservices with Go and Kubernetes</a></li>
-      <li><a href="courses/fullstack.html" title="Click to explore Full Stack Development">Full-Stack Web Dev</a></li>
-      <li><a href="courses/cloudbasics.html" title="Click to explore Cloud Basics">Basics of Cloud Computing (AWS/Azure)</a></li>
-      <li><a href="courses/linux.html" title="Click to explore Linux Essentials">Linux Essentials for SysAdmins</a></li>
-      <li><a href="courses/ccna.html" title="Click to explore CCNA Networking">Introduction to Networking (CCNA)</a></li>
-      <li><a href="courses/python-beginners.html" title="Click to explore Python for Absolute Beginners">Python Programming (Absolute Beginners)</a></li>
-      <li><a href="courses/git.html" title="Click to explore Git & GitHub">Version Control with Git & GitHub</a></li>
-      <li><a href="courses/cybersecurity.html" title="Click to explore Cybersecurity Basics">Cybersecurity Essentials for All</a></li>
-      <li><a href="courses/homelab.html" title="Click to explore Cloud Home Lab Setup">Home Lab Setup for Cloud Practice</a></li>
-    </ul>
-  </div>
-  </section>
-<!-- Real-Time Project Solutions Section -->
-<section id="projects" style="background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(to right, #ffffff, #e0f7fa); padding: 60px 20px;">
-  <div style="max-width: 1200px; margin: auto; background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 128, 128, 0.1);">
-    <h2 style="text-align:center; color:#008080; font-size: 2rem; text-shadow: 1px 1px 1px #b2dfdb;">Real-Time Project Solutions</h2>
-    <p style="text-align:center; max-width:900px; margin: 10px auto 40px; font-size: 1.1rem;">
-      At Cybercode EduLabs, we build and deliver hands-on real-time projects for learners, professionals, and businesses. Explore some of our featured solutions below and get in touch if you need a similar one tailored to your needs.
-    </p>
 
-    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
-      
-      <!-- Project 1 -->
-      <div style="width:300px; background:#f0f0f0; padding:20px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <h3 style="color:#008080;">HomeSpoon Delivery Platform</h3>
-        <p style="margin:10px 0;">A regional food delivery platform using Go, React, AWS, and MySQL to connect home cooks with customers across India.</p>
-        <button onclick="window.open('https://wa.me/919014066549','_blank')" style="background:#008080; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer;">
-          Request Similar Project
-        </button>
-      </div>
-
-      <!-- Project 2 -->
-      <div style="width:300px; background:#f0f0f0; padding:20px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <h3 style="color:#008080;">DevSecOps CI/CD Pipeline</h3>
-        <p style="margin:10px 0;">Secure pipeline setup using Jenkins, Docker, Kubernetes, and AWS with automated security scanning and logging.</p>
-        <button onclick="window.open('https://wa.me/919014066549','_blank')" style="background:#008080; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer;">
-          Request Similar Project
-        </button>
-      </div>
-
-      <!-- Project 3 -->
-      <div style="width:300px; background:#f0f0f0; padding:20px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <h3 style="color:#008080;">Online Training Portal</h3>
-        <p style="margin:10px 0;">A full-stack portal for delivering tech courses using HTML, CSS, JS, and Netlify with Google Forms + WhatsApp integration.</p>
-        <button onclick="window.open('https://wa.me/919014066549','_blank')" style="background:#008080; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer;">
-          Request Similar Project
-        </button>
-      </div>
-
-      <!-- Project 4 -->
-      <div style="width:300px; background:#f0f0f0; padding:20px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <h3 style="color:#008080;">E-commerce for Sarees</h3>
-        <p style="margin:10px 0;">Frontend and backend setup for Deekshana Vastralaya saree business, integrated with social media ads and catalog management.</p>
-        <button onclick="window.open('https://wa.me/919014066549','_blank')" style="background:#008080; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer;">
-          Request Similar Project
-        </button>
-      </div>
-
+  <section id="courses" style="background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(to right, #ffffff, #e0f7fa); padding: 60px 20px;">
+    <div class="courses">
+      <h3>Courses Offered:</h3>
+      <ul>
+        <li><a href="courses/golang.html" title="Click to explore Golang course">Golang</a></li>
+        <li><a href="courses/aws.html" title="Click to explore AWS course">AWS Certified Training</a></li>
+        <li><a href="courses/devops.html" title="Click to explore DevOps course">DevOps (Docker & Kubernetes)</a></li>
+        <li><a href="courses/openstack.html" title="Click to explore Linux & OpenStack">Private Cloud with OpenStack</a></li>
+        <li><a href="courses/python.html" title="Click to explore Python Programming">Python Programming(Job-Focused)</a></li>
+        <li><a href="courses/python-ds-ai.html" title="Click to explore Data Science & AI with Python">Python for Data Science & AI</a></li>
+        <li><a href="courses/ml-aws.html" title="Click to explore ML with AWS">Machine Learning with AWS</a></li>
+        <li><a href="courses/cloud-security.html" title="Click to explore Cloud Security">Cloud Security & DevSecOps</a></li>
+        <li><a href="courses/terraform.html" title="Click to explore Terraform & IaC">Terraform & Infrastructure as Code (IaC)</a></li>
+        <li><a href="courses/go-microservices.html" title="Click to explore Microservices with Go">Microservices with Go and Kubernetes</a></li>
+        <li><a href="courses/fullstack.html" title="Click to explore Full Stack Development">Full-Stack Web Dev</a></li>
+        <li><a href="courses/cloudbasics.html" title="Click to explore Cloud Basics">Basics of Cloud Computing (AWS/Azure)</a></li>
+        <li><a href="courses/linux.html" title="Click to explore Linux Essentials">Linux Essentials for SysAdmins</a></li>
+        <li><a href="courses/ccna.html" title="Click to explore CCNA Networking">Introduction to Networking (CCNA)</a></li>
+        <li><a href="courses/python-beginners.html" title="Click to explore Python for Absolute Beginners">Python Programming (Absolute Beginners)</a></li>
+        <li><a href="courses/git.html" title="Click to explore Git & GitHub">Version Control with Git & GitHub</a></li>
+        <li><a href="courses/cybersecurity.html" title="Click to explore Cybersecurity Basics">Cybersecurity Essentials for All</a></li>
+        <li><a href="courses/homelab.html" title="Click to explore Cloud Home Lab Setup">Home Lab Setup for Cloud Practice</a></li>
+      </ul>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- Real-Time Project Solutions Section -->
+  <section id="projects" style="background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(to right, #ffffff, #e0f7fa); padding: 60px 20px;">
+    <div style="max-width: 1200px; margin: auto; background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 128, 128, 0.1);">
+      <h2 style="text-align:center; color:#008080; font-size: 2rem; text-shadow: 1px 1px 1px #b2dfdb;">Real-Time Project Solutions</h2>
+      <p style="text-align:center; max-width:900px; margin: 10px auto 40px; font-size: 1.1rem;">
+        At Cybercode EduLabs, we build and deliver hands-on real-time projects for learners, professionals, and businesses. Explore some of our featured solutions below and get in touch if you need a similar one tailored to your needs.
+      </p>
+
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
+        
+        <!-- Project 1 -->
+        <div class="project-card">
+          <h3>HomeSpoon Delivery Platform</h3>
+          <p style="margin:10px 0;">A regional food delivery platform using Go, React, AWS, and MySQL to connect home cooks with customers across India.</p>
+          <button onclick="window.open('https://wa.me/919014066549','_blank')">
+            Request Similar Project
+          </button>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <h3>DevSecOps CI/CD Pipeline</h3>
+          <p style="margin:10px 0;">Secure pipeline setup using Jenkins, Docker, Kubernetes, and AWS with automated security scanning and logging.</p>
+          <button onclick="window.open('https://wa.me/919014066549','_blank')">
+            Request Similar Project
+          </button>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <h3>Online Training Portal</h3>
+          <p style="margin:10px 0;">A full-stack portal for delivering tech courses using HTML, CSS, JS, and Netlify with Google Forms + WhatsApp integration.</p>
+          <button onclick="window.open('https://wa.me/919014066549','_blank')">
+            Request Similar Project
+          </button>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+          <h3>E-commerce for Sarees</h3>
+          <p style="margin:10px 0;">Frontend and backend setup for Deekshana Vastralaya saree business, integrated with social media ads and catalog management.</p>
+          <button onclick="window.open('https://wa.me/919014066549','_blank')">
+            Request Similar Project
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
   
   <!-- Project Portfolio Slider Section -->
   <div class="project-slider-section" style="background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(to bottom, #ffffff, #e0f7fa); padding: 50px 20px;">
-  <div class="container">
-    <h2 style="color: #008080; text-align: center;">Project Portfolio Showcase</h2>
-    <p style="text-align: center; margin-bottom: 40px;">
-      Explore a few of the real-time projects we've delivered or currently working on.
-    </p>
+    <div class="container">
+      <h2 style="color: #008080; text-align: center;">Project Portfolio Showcase</h2>
+      <p style="text-align: center; margin-bottom: 40px;">
+        Explore a few of the real-time projects we've delivered or currently working on.
+      </p>
 
-    <div class="slider-container" style="position: relative; max-width: 1000px; margin: auto; overflow: hidden;">
-      <div class="slider-wrapper" style="display: flex; transition: transform 0.5s ease;">
-        
-        <!-- Slide 1 -->
-        <div class="slide" style="min-width: 100%; box-sizing: border-box; padding: 20px;">
-          <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 128, 128, 0.2);">
-            <h3 style="color: #008080;">Cloud Infrastructure Setup</h3>
-            <p><strong>Tech Stack:</strong> AWS, Terraform, Jenkins</p>
-            <p>Provisioned and automated a scalable multi-tier cloud infrastructure using Infrastructure as Code (IaC).</p>
+      <div class="slider-container">
+        <div class="slider-wrapper" id="sliderWrapper">
+          
+          <!-- Slide 1 -->
+          <div class="slide">
+            <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 128, 128, 0.2);">
+              <h3 style="color: #008080;">Cloud Infrastructure Setup</h3>
+              <p><strong>Tech Stack:</strong> AWS, Terraform, Jenkins</p>
+              <p>Provisioned and automated a scalable multi-tier cloud infrastructure using Infrastructure as Code (IaC).</p>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="slide">
+            <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 128, 128, 0.2);">
+              <h3 style="color: #008080;">E-Commerce Analytics Dashboard</h3>
+              <p><strong>Tech Stack:</strong> Python, MySQL, Plotly</p>
+              <p>Built a visual dashboard for real-time sales analysis and inventory forecasting for an e-commerce platform.</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="slide">
+            <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 128, 128, 0.2);">
+              <h3 style="color: #008080;">Secure File Sharing System</h3>
+              <p><strong>Tech Stack:</strong> Golang, AWS S3, JWT</p>
+              <p>Developed a secure file upload & sharing solution with role-based access and encryption at rest.</p>
+            </div>
           </div>
         </div>
 
-        <!-- Slide 2 -->
-        <div class="slide" style="min-width: 100%; box-sizing: border-box; padding: 20px;">
-          <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 128, 128, 0.2);">
-            <h3 style="color: #008080;">E-Commerce Analytics Dashboard</h3>
-            <p><strong>Tech Stack:</strong> Python, MySQL, Plotly</p>
-            <p>Built a visual dashboard for real-time sales analysis and inventory forecasting for an e-commerce platform.</p>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="slide" style="min-width: 100%; box-sizing: border-box; padding: 20px;">
-          <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 128, 128, 0.2);">
-            <h3 style="color: #008080;">Secure File Sharing System</h3>
-            <p><strong>Tech Stack:</strong> Golang, AWS S3, JWT</p>
-            <p>Developed a secure file upload & sharing solution with role-based access and encryption at rest.</p>
-          </div>
-        </div>
-
+        <!-- Navigation buttons -->
+        <button onclick="prevSlide()" class="slider-nav slider-prev">←</button>
+        <button onclick="nextSlide()" class="slider-nav slider-next">→</button>
       </div>
-
-      <!-- Navigation buttons -->
-      <button onclick="prevSlide()" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: #008080; color: white; border: none; padding: 10px 15px; border-radius: 5px;">←</button>
-      <button onclick="nextSlide()" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: #008080; color: white; border: none; padding: 10px 15px; border-radius: 5px;">→</button>
     </div>
   </div>
-</div>
-
-<script>
-  let currentSlide = 0;
-  const sliderWrapper = document.querySelector('.slider-wrapper');
-  const totalSlides = document.querySelectorAll('.slide').length;
-
-  function showSlide(index) {
-    const slideWidth = document.querySelector('.slide').offsetWidth;
-    sliderWrapper.style.transform = `translateX(-${index * slideWidth}px)`;
-  }
-
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    showSlide(currentSlide);
-  }
-
-  function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    showSlide(currentSlide);
-  }
-
-  // Optional: Auto-slide every 5 seconds
-  setInterval(nextSlide, 5000);
-</script>
-
 
   <div class="note">
     <p><strong>Note:</strong> To get detailed information about course fees and schedules, please register your interest. Our team will personally reach out and assist you with all the information you need.</p>
@@ -480,7 +586,6 @@
     </div>
   </section>
 
-
   <section id="faq" class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-container">
@@ -492,7 +597,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-question">Will I get recordings of classes?</button>
-        <div class="faq-answer">
+       <div class="faq-answer">
           <p>Yes, recordings of every session will be shared for revision and backup.</p>
         </div>
       </div>
@@ -555,32 +660,5 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 </script>
-
-
-<button onclick="registerCourse('AWS')" style="margin: 5px;">Register for AWS</button>
-<button onclick="registerCourse('Azure')" style="margin: 5px;">Register for Azure</button>
-<button onclick="registerCourse('Google Cloud')" style="margin: 5px;">Register for Google Cloud</button>
-<button onclick="registerCourse('Linux')" style="margin: 5px;">Register for Linux</button>
-<button onclick="registerCourse('DevOps')" style="margin: 5px;">Register for DevOps</button>
-<button onclick="registerCourse('CCNA')" style="margin: 5px;">Register for CCNA</button>
-<button onclick="registerCourse('Ethical Hacking')" style="margin: 5px;">Register for Ethical Hacking</button>
-<button onclick="registerCourse('Python')" style="margin: 5px;">Register for Python</button>
-<button onclick="registerCourse('Java')" style="margin: 5px;">Register for Java</button>
-<button onclick="registerCourse('JavaScript')" style="margin: 5px;">Register for JavaScript</button>
-<button onclick="registerCourse('Data Science')" style="margin: 5px;">Register for Data Science</button>
-<button onclick="registerCourse('AI/ML')" style="margin: 5px;">Register for AI/ML</button>
-<button onclick="registerCourse('Kubernetes')" style="margin: 5px;">Register for Kubernetes</button>
-<button onclick="registerCourse('Docker')" style="margin: 5px;">Register for Docker</button>
-<button onclick="registerCourse('Ansible')" style="margin: 5px;">Register for Ansible</button>
-<button onclick="registerCourse('Terraform')" style="margin: 5px;">Register for Terraform</button>
-<button onclick="registerCourse('Networking Basics')" style="margin: 5px;">Register for Networking Basics</button>
-<button onclick="registerCourse('Cybersecurity')" style="margin: 5px;">Register for Cybersecurity</button>
-
-<script>
-  function registerCourse(courseName) {
-    localStorage.setItem('registeredCourse', courseName);
-    window.open('https://forms.gle/fWWhSeYP5qbmttyP8', '_blank');
-  }
-</script>  
 </body>
 </html>

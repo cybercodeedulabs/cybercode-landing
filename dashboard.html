@@ -5,20 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Dashboard - Cybercode EduLabs</title>
     <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="css/styles.css">
     <style>
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        background: linear-gradient(to right, #004aad, #2c2c54);
-        color: #fff;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-      }
-      .container {
+      .dashboard-container {
         background-color: #fff;
         color: #333;
         padding: 40px;
@@ -36,10 +25,18 @@
       }
       h2 {
         color: #004aad;
+        margin-bottom: 20px;
       }
       .course-list {
         margin-top: 20px;
         text-align: left;
+      }
+      .course-item {
+        padding: 12px;
+        margin-bottom: 10px;
+        background-color: #f5f5f5;
+        border-radius: 6px;
+        border-left: 4px solid #004aad;
       }
       .logout-btn {
         background-color: #004aad;
@@ -50,57 +47,123 @@
         cursor: pointer;
         margin-top: 20px;
         font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+      .logout-btn:hover {
+        background-color: #003a87;
+      }
+      .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(0, 74, 173, 0.3);
+        border-radius: 50%;
+        border-top-color: #004aad;
+        animation: spin 1s ease-in-out infinite;
+        margin-right: 10px;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      .error-message {
+        color: #e74c3c;
+        background-color: #fadbd8;
+        padding: 10px;
+        border-radius: 6px;
+        margin-top: 15px;
+      }
+      .no-courses {
+        font-style: italic;
+        color: #777;
+        padding: 15px 0;
+      }
+      @media (max-width: 768px) {
+        .dashboard-container {
+          padding: 25px;
+          margin: 10px;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="dashboard-container">
       <div class="logo">
         <img src="images/logo.png" alt="Cybercode Logo" />
       </div>
       <h2>Welcome to Your Dashboard</h2>
-      <p id="welcomeText">Loading your details...</p>
+      <p id="welcomeText"><span class="loading"></span> Loading your details...</p>
       <div class="course-list" id="courseContainer"></div>
       <button class="logout-btn" onclick="logoutUser()">Logout</button>
     </div>
 
     <script>
-      const user = JSON.parse(localStorage.getItem("currentUser"));
-      const courseContainer = document.getElementById("courseContainer");
-      const welcomeText = document.getElementById("welcomeText");
+      document.addEventListener('DOMContentLoaded', function() {
+        const user = JSON.parse(localStorage.getItem("currentUser"));
+        const courseContainer = document.getElementById("courseContainer");
+        const welcomeText = document.getElementById("welcomeText");
 
-      if (!user || !user.email) {
-        window.location.href = "index.html";
-      } else {
-        welcomeText.innerHTML = `Hello <strong>${user.name}</strong>! Fetching your registered courses...`;
+        // Authentication check
+        if (!user || !user.email) {
+          window.location.href = "login.html";
+          return;
+        }
+        
+        // Display user name
+        welcomeText.innerHTML = `Hello <strong>${user.name || 'Student'}</strong>! <span class="loading"></span> Fetching your registered courses...`;
+        
+        // Set a timeout for API call
+        const apiTimeout = setTimeout(() => {
+          handleApiError('Request timed out. Please try again later.');
+        }, 10000);
+        
+        // Fetch course data
         fetch(
           `https://script.google.com/macros/s/AKfycbw1XtKQOBfevYL5esVspkXYlGLtgcgjroPmyWb_yxy6sxqID19mSB-B45o8oGKZKxCt/exec?email=${encodeURIComponent(
             user.email
           )}`
         )
-          .then((res) => res.json())
-          .then((data) => {
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            clearTimeout(apiTimeout);
+            welcomeText.innerHTML = `Hello <strong>${user.name || 'Student'}</strong>!`;
+            
             if (data && data.length > 0) {
               const courseListHTML = data
                 .map(
                   (entry, index) =>
-                    `<p><strong>Course ${index + 1}:</strong> ${entry.course}</p>`
+                    `<div class="course-item"><strong>Course ${index + 1}:</strong> ${entry.course}</div>`
                 )
                 .join("");
               courseContainer.innerHTML = courseListHTML;
             } else {
               courseContainer.innerHTML =
-                "<p>You have not registered for any courses yet.</p>";
+                '<p class="no-courses">You have not registered for any courses yet.</p>';
             }
           })
-          .catch((error) => {
+          .catch(error => {
+            clearTimeout(apiTimeout);
             console.error("Error fetching data:", error);
-            courseContainer.innerHTML =
-              "<p>Error loading course data. Please try again later.</p>";
+            handleApiError('Error loading course data. Please try again later.');
           });
-      }
+        
+        function handleApiError(message) {
+          welcomeText.innerHTML = `Hello <strong>${user.name || 'Student'}</strong>!`;
+          courseContainer.innerHTML = `<div class="error-message">${message}</div>`;
+        }
+      });
 
       function logoutUser() {
+        // Clear user data
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('registeredCourse');
+        localStorage.removeItem('userCourses');
+        
+        // Redirect to logout page
         window.location.href = "logout.html";
       }
     </script>
