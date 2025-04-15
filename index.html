@@ -556,6 +556,30 @@
       </div>
     </div>
   </div>
+  
+  <script>
+  let currentSlide = 0;
+  const sliderWrapper = document.querySelector('.slider-wrapper');
+  const totalSlides = document.querySelectorAll('.slide').length;
+
+  function showSlide(index) {
+    const slideWidth = document.querySelector('.slide').offsetWidth;
+    sliderWrapper.style.transform = `translateX(-${index * slideWidth}px)`;
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  // Optional: Auto-slide every 5 seconds
+  setInterval(nextSlide, 5000);
+</script>
 
   <div class="note">
     <p><strong>Note:</strong> To get detailed information about course fees and schedules, please register your interest. Our team will personally reach out and assist you with all the information you need.</p>
@@ -660,5 +684,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 </script>
-</body>
-</html>
